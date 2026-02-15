@@ -19,8 +19,8 @@
   accentColor: "#38bdf8"  # Light blue
 
 - type: traitCategory
-  id: VocalProfile
-  name: trait-category-vocal
+  id: SpeechTraits
+  name: trait-category-speech-traits
   priority: 40
   accentColor: "#34eb37"  # Green
 

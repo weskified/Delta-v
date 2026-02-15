@@ -4,7 +4,7 @@
   id: SleepyMumble
   name: trait-sleepy-name
   description: trait-sleepy-desc
-  category: VocalProfile
+  category: SpeechTraits
   conditions:
   - !type:HasCompCondition
     component: Muted
@@ -21,7 +21,7 @@
   id: FrontalLisp
   name: trait-frontal-lisp-name
   description: trait-frontal-lisp-desc
-  category: VocalProfile
+  category: SpeechTraits
   conditions:
   - !type:HasCompCondition
     component: Muted
@@ -43,7 +43,7 @@
   id: LateralLisp
   name: trait-lateral-name
   description: trait-lateral-desc
-  category: VocalProfile
+  category: SpeechTraits
   conditions:
   - !type:HasCompCondition
     component: Muted
@@ -65,7 +65,7 @@
   id: Hushed
   name: trait-hushed-name
   description: trait-hushed-desc
-  category: VocalProfile
+  category: SpeechTraits
   conditions:
   - !type:HasCompCondition
     component: Muted
@@ -87,7 +87,7 @@
   id: SocialAnxiety
   name: trait-socialanxiety-name
   description: trait-socialanxiety-desc
-  category: VocalProfile
+  category: SpeechTraits
   conditions:
   - !type:HasCompCondition
     component: Muted
@@ -108,7 +108,7 @@
   id: Muted
   name: trait-muted-name
   description: trait-muted-desc
-  category: VocalProfile
+  category: SpeechTraits
   conditions:
   - !type:HasCompCondition
     component: BorgChassis

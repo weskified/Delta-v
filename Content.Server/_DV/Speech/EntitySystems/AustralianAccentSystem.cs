@@ -33,10 +33,10 @@ public sealed class AustralianAccentSystem : EntitySystem
         _st.AddRule(new[] { "cargo", "quartermaster" }, "truckie", probability: 0.7);
         _st.AddRule(new[] { "botanist", "gardener" }, "greenie", probability: 0.7);
         _st.AddRule("clown", "funny bugger", probability: 0.7);
-        _st.AddRule(new[] { "syndicate", "traitor", "nuke op", "nuclear operative" }, "shonky bastard", probability: 0.7);
+        _st.AddRule(new[] { "syndi", "syndie", "syndicate", "nukie", "nuke op", "nuclear operative", "traitor" }, "shonky bastard", probability: 0.7);
 
         // gen vocab / expressions
-        _st.AddRule(new[] { "hello", "hi" }, "g'day", applyOnce: true);
+        _st.AddRule(new[] { "hello", "hello there", "hi" }, "g'day", applyOnce: true);
         _st.AddRule(new[] { "thanks", "thank you" }, "cheers");
         _st.AddRule(new[] { "very", "really" }, "bloody", probability: 0.65);
         _st.AddRule("totally", "dead set", probability: 0.50);
@@ -90,6 +90,8 @@ public sealed class AustralianAccentSystem : EntitySystem
 
     private void OnAccent(EntityUid uid, AustralianAccentComponent component, AccentGetEvent args)
     {
-        args.Message = _st.Process(args.Message);
+        // process the message two times beause yes
+        var message = _st.Process(args.Message);
+        args.Message = _st.Process(message);
     }
 }

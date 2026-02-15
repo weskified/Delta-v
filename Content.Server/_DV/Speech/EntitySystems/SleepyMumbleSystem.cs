@@ -48,9 +48,9 @@ public sealed class SleepyMumbleSystem : EntitySystem
         _st.AddRule("ght", new[] { "gh'", "t" }, probability: 0.45, position: MatchPosition.Suffix);
         _st.AddRule("mb", new[] { "m", "m'" }, probability: 0.5, position: MatchPosition.Suffix);
 
-        _st.AddRule(@"\bhe\b", "'e", probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule(@"\bhim\b", "'im", probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule(@"\bher\b", "'er", probability: 0.5, position: MatchPosition.Nowhere);
+        _st.AddRule(@"\bhe\b", "'e", probability: 0.7, position: MatchPosition.Nowhere);
+        _st.AddRule(@"\bhim\b", "'im", probability: 0.7, position: MatchPosition.Nowhere);
+        _st.AddRule(@"\bher\b", "'er", probability: 0.7, position: MatchPosition.Nowhere);
 
         _st.AddRule("can", new[] { "c'n", "cn", "kn" }, probability: 0.6, position: MatchPosition.Nowhere);
         _st.AddRule("and", new[] { "an'", "n", "'n", "nd" }, probability: 0.7, position: MatchPosition.Nowhere);
