@@ -49,8 +49,14 @@ trait-condition-department-is = You must be in the [color={$color}]{$department}
 trait-condition-department-not = You must not be in the [color={$color}]{$department}[/color] department.
 
 ## HasComp borg conditions
-trait-condition-borg-not = You must not be a [color=yellow]borg[/color].
+trait-condition-borg-not = You must not be a [color=yellow]Borg[/color].
 
 # Antag conditions
 trait-condition-antag-is = Must be eligible for [color=red]{$antag}[/color] antag role.
 trait-condition-antag-not = Must not be eligible for [color=red]{$antag}[/color] antag role.
+
+## Speech Traits
+trait-condition-muted-not = You must not be [color=yellow]Muted[/color]
+trait-condition-muted-all = You must not have any of the traits (excluding [color=yellow]Muted[/color]) from the [color=#34eb37]Vocal Profile[/color] category.
+trait-condition-frontal-not = You must not have a [color=yellow]Frontal Lisp[/color].
+trait-condition-lateral-not = You must not have a [color=yellow]Lateral Lisp[/color].

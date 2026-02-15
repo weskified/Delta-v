@@ -14,19 +14,25 @@
   id: Accents
   name: trait-category-accents
   priority: 30
-  maxTraits: 3
-  maxPoints: 2
+  maxTraits: 2
+  maxPoints: 1
   accentColor: "#38bdf8"  # Light blue
+
+- type: traitCategory
+  id: VocalProfile
+  name: trait-category-vocal
+  priority: 40
+  accentColor: "#34eb37"  # Green
 
 - type: traitCategory
   id: Medical
   name: trait-category-medical
-  priority: 40
+  priority: 50
   accentColor: "#ef4444"  # Red
 
 - type: traitCategory
   id: Meta
   name: trait-category-meta
-  priority: 50
+  priority: 60
   maxTraits: 1
   accentColor: "#eab308"  # Yellow

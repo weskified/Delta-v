@@ -1,0 +1,131 @@
+## If you add a new trait, make sure to add the corresponding component to the whitelist in \Resources\Prototypes\Entities\Mobs\Player\clone.yml so it gets copied to clones correctly!
+
+- type: trait
+  id: SleepyMumble
+  name: trait-sleepy-name
+  description: trait-sleepy-desc
+  category: VocalProfile
+  conditions:
+  - !type:HasCompCondition
+    component: Muted
+    invert: true
+    tooltip: trait-condition-muted-not
+  conflicts:
+  - Muted
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: SleepyMumble
+
+- type: trait
+  id: FrontalLisp
+  name: trait-frontal-lisp-name
+  description: trait-frontal-lisp-desc
+  category: VocalProfile
+  conditions:
+  - !type:HasCompCondition
+    component: Muted
+    invert: true
+    tooltip: trait-condition-muted-not
+  - !type:HasCompCondition
+    component: LateralLisp
+    invert: true
+    tooltip: trait-condition-lateral-not
+  conflicts:
+  - Muted
+  - LateralLisp
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: FrontalLisp
+
+- type: trait
+  id: LateralLisp
+  name: trait-lateral-name
+  description: trait-lateral-desc
+  category: VocalProfile
+  conditions:
+  - !type:HasCompCondition
+    component: Muted
+    invert: true
+    tooltip: trait-condition-muted-not
+  - !type:HasCompCondition
+    component: FrontalLisp
+    invert: true
+    tooltip: trait-condition-frontal-not
+  conflicts:
+  - Muted
+  - FrontalLisp
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: LateralLisp
+
+- type: trait
+  id: Hushed
+  name: trait-hushed-name
+  description: trait-hushed-desc
+  category: VocalProfile
+  conditions:
+  - !type:HasCompCondition
+    component: Muted
+    invert: true
+    tooltip: trait-condition-muted-not
+  - !type:HasCompCondition
+    component: BorgChassis
+    invert: true
+    tooltip: trait-condition-borg-not
+  conflicts:
+  - Muted
+  - BorgChassis
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: Hushed
+
+- type: trait
+  id: SocialAnxiety
+  name: trait-socialanxiety-name
+  description: trait-socialanxiety-desc
+  category: VocalProfile
+  conditions:
+  - !type:HasCompCondition
+    component: Muted
+    invert: true
+    tooltip: trait-condition-muted-not
+  conflicts:
+  - Muted
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: StutteringAccent
+      matchRandomProb: 0.1
+      fourRandomProb: 0
+      threeRandomProb: 0
+      cutRandomProb: 0
+
+- type: trait
+  id: Muted
+  name: trait-muted-name
+  description: trait-muted-desc
+  category: VocalProfile
+  conditions:
+  - !type:HasCompCondition
+    component: BorgChassis
+    invert: true
+    tooltip: trait-condition-borg-not
+  - !type:HasCompCondition
+    component: Muted
+    invert: false
+    tooltip: trait-condition-muted-all
+  conflicts: #* Make sure to add new traits in this category to this
+  - Muted
+  - FrontalLisp
+  - LateralLisp
+  - SleepyMumble
+  - StutteringAccent
+  - SocialAnxiety
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: Muted

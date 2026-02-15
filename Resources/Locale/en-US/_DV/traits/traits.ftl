@@ -67,3 +67,13 @@ trait-anglish-desc = Your tung is of the Saxons, and say unlike others aboard th
 
 trait-protected-name = Marked as Protected
 trait-protected-desc = Due to your position, value, or circumstances, your survival is considered preferable. You won't be targeted by kill objectives.
+
+trait-lateral-name = Lateral Lisp
+trait-lateral-desc = You shlpeak with a lishlp.
+
+trait-australian-name = Australian Accent
+trait-australian-desc = You speak like you come from a moon down under.
+
+trait-sleepy-name = Sleepy Mumbling
+trait-sleepy-desc = You sound perpetually drowsy, whether from lack of sleep or natural sleepiness.
+
