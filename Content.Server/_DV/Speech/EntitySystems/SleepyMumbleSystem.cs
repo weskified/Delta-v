@@ -105,7 +105,7 @@ public sealed class SleepyMumbleSystem : EntitySystem
                 " ...mnhn... ", " ...uhhh-mm... ", " ...nnnhhh... ", " ...m-mm... ",
                 " ...wh-.. ", " ...nnh... ", " ...mmf... "
             },
-            CapitalizationMode.AllLower, 0.02, position: MatchPosition.Anywhere
+            CapitalizationMode.AllLower, 0.1, position: MatchPosition.Anywhere, applyOnce: true
         );
 
         SubscribeLocalEvent<SleepyMumbleComponent, AccentGetEvent>(OnAccent);
