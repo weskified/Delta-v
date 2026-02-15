@@ -75,6 +75,8 @@
   - Unborgable
   - AnglishAccent
   - AustralianAccent
+  - SleepyMumble
+  - LateralLisp
   # End DeltaV Additions
   blacklist:
     components:
