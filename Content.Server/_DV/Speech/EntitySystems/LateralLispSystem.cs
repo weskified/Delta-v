@@ -10,9 +10,9 @@ public sealed class LateralLispSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _st.AddRule("s", "shl", CapitalizationMode.PerLetter, position: MatchPosition.Anywhere);
-        _st.AddRule("z", "zhl", CapitalizationMode.PerLetter, position: MatchPosition.Anywhere);
-        _st.AddRule("x", "kshl", CapitalizationMode.PerLetter, position: MatchPosition.Anywhere);
+        _st.AddRule("s", "shl", position: MatchPosition.Anywhere);
+        _st.AddRule("z", "zhl", position: MatchPosition.Anywhere);
+        _st.AddRule("x", "kshl", position: MatchPosition.Anywhere);
 
         SubscribeLocalEvent<LateralLispComponent, AccentGetEvent>(OnAccent);
     }
