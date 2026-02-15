@@ -23,15 +23,14 @@ public sealed class AustralianAccentSystem : EntitySystem
         );
 
         _st.AddRule(
-            new[] { "girl", "lady", "woman", "ma'am", "maam", "miss", "chick" },
+            new[] { "girl", "lady", "woman", "ma'am", "maam", "miss" },
             new[] { "sheila", "missus" }
         );
 
         _st.AddRule(new[] { "engineer", "engi" }, "sparkie");
-        _st.AddRule(new[] { "security", "sec" }, new[] { "coppa", "copper", "walloper" });
-        _st.AddRule("courier", "postie");
+        _st.AddRule(new[] { "security", "sec", "secoff", "sec off" }, new[] { "coppa", "copper", "walloper" });
+        _st.AddRule(new[] { "courier", "mailman" }, "postie");
         _st.AddRule("janitor", "garbo");
-        _st.AddRule("captain", "skip");
 
         // gen vocab / expressions
         _st.AddRule(new[] { "hello", "hi" }, "g'day", applyOnce: true);
@@ -69,7 +68,7 @@ public sealed class AustralianAccentSystem : EntitySystem
         _st.AddRule(new[] { "cig", "cigg", "cigarette" }, "ciggy");
 
         // phonetic stuff
-        _st.AddRule(@"ight\b", "oit", position: MatchPosition.Nothing);
+        _st.AddRule(@"ight\b", "oight", position: MatchPosition.Nothing);
         _st.AddRule(@"ou", "aow", probability: 0.25, position: MatchPosition.Nothing);
         _st.AddRule(@"(?<=[aeiou])tt(?=[aeiou])", "dd", position: MatchPosition.Nothing);
         _st.AddRule(@"(?<=[aeiou])t(?=[aeiou])", "d", probability: 0.4, position: MatchPosition.Nothing);
