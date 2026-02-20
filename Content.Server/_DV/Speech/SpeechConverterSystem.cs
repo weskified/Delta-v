@@ -173,6 +173,7 @@ namespace Content.Server._DV.Speech.SpeechConverter
                 );
             }
         }
+
         public string Process(string input)
         {
             if (!_rules.Any())
@@ -322,18 +323,24 @@ namespace Content.Server._DV.Speech.SpeechConverter
         {
             var result = new char[replacement.Length];
             int originalIndex = 0;
+            bool isLastUpper = false;
 
             for (int i = 0; i < replacement.Length; i++)
             {
                 while (originalIndex < original.Length && !char.IsLetter(original[originalIndex]))
+                {
                     originalIndex++;
+                }
 
-                if (originalIndex < original.Length && char.IsUpper(original[originalIndex]))
-                    result[i] = char.ToUpperInvariant(replacement[i]);
-                else
-                    result[i] = replacement[i];
+                if (originalIndex < original.Length)
+                {
+                    isLastUpper = char.IsUpper(original[originalIndex]);
+                    originalIndex++;
+                }
 
-                originalIndex++;
+                result[i] = isLastUpper
+                    ? char.ToUpperInvariant(replacement[i])
+                    : char.ToLowerInvariant(replacement[i]);
             }
 
             return new string(result);
