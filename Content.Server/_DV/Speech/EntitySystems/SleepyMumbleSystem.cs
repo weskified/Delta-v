@@ -14,115 +14,83 @@ public sealed class SleepyMumbleSystem : EntitySystem
     {
         base.Initialize();
 
-        // voewl
-        _st.AddRule(@"(?<=[aeiou])r(?=[^aeiou]|$)", ["rr", "h", ""], probability: 0.35, position: MatchPosition.Nothing);
-        _st.AddRule(@"(?<=[aeiou])l(?=[^aeiou])", ["ll", "w", "ul"], probability: 0.3, position: MatchPosition.Nothing);
-        _st.AddRule(@"(?<=[aeiou])s(?=[kpt]\b)", ["s", "sk", "'"], probability: 0.35, position: MatchPosition.Nothing);
-        _st.AddRule(@"(?<=[aeiou])[nml][tdsk]\b", ["n'", "m'", "nt", "nd"], probability: 0.45, position: MatchPosition.Nothing);
-        _st.AddRule(@"(?<=\w{2})e(?=\w{2})", ["uh", "a", ""], probability: 0.35, position: MatchPosition.Nothing);
+        _st.AddRule(@"(?<=[aeiou])l(?=[^aeiou])", ["w", "ul", "'l"], probability: 0.25, position: MatchPosition.Nothing);
+        _st.AddRule(@"(?<=[aeiou])[nml][tdk]\b", ["n'", "m'", "nd"], probability: 0.45, position: MatchPosition.Nothing);
         _st.AddRule(@"a(?=[^aeiou]{1,2}\b)", ["uh", "ah"], probability: 0.3, position: MatchPosition.Nothing);
-        _st.AddRule(@"(?<=[^aeiou])ow(?=[^aeiou]|$)", ["aw", "oh", "o"], probability: 0.35, position: MatchPosition.Nothing);
-        _st.AddRule(@"(?<=[^aeiou])[ae]y\b", ["eh", "ey", "aay"], probability: 0.3, position: MatchPosition.Nothing);
-        _st.AddRule(@"ee(?=[^aeiou]|$)", ["eee", "eeh", "ii"], probability: 0.35, position: MatchPosition.Nothing);
-        _st.AddRule(@"oo(?=[^aeiou]|$)", ["ooo", "uuu", "ooh"], probability: 0.3, position: MatchPosition.Nothing);
-        _st.AddRule(@"(?<=[^aeiou])aa(?=[^aeiou]|$)", ["aaa", "ahh"], probability: 0.25, position: MatchPosition.Nothing);
+        _st.AddRule(@"(?<=[^aeiou])ow(?=[^aeiou]|$)", ["aw", "oh"], probability: 0.35, position: MatchPosition.Nothing);
+        _st.AddRule(@"ee(?=[^aeiou]|$)", ["eee", "eeh"], probability: 0.3, position: MatchPosition.Nothing);
+        _st.AddRule(@"oo(?=[^aeiou]|$)", ["ooo", "uuh"], probability: 0.3, position: MatchPosition.Nothing);
 
-        // consonants
-        _st.AddRule(@"s(?=[aeiou])", ["sh", "sz", "ss"], probability: 0.25, position: MatchPosition.Anywhere);
-        _st.AddRule(@"z", ["zh", "zzh"], probability: 0.3, position: MatchPosition.Anywhere);
-        _st.AddRule("str", "shtr", probability: 0.7, position: MatchPosition.Anywhere);
-        _st.AddRule("thr", "shr", probability: 0.7, position: MatchPosition.Anywhere);
-        _st.AddRule("shr", "shh", probability: 0.7, position: MatchPosition.Anywhere);
-        _st.AddRule(@"th", ["f", "d", "t"], probability: 0.45, position: MatchPosition.Anywhere);
-        _st.AddRule(@"([bcdfghjklmnpqrstvwxyz])\1", ["$1$1", "$1$1$1$1"], probability: 0.4, position: MatchPosition.Nothing);
-        _st.AddRule(@"\b(scr|spr|spl|squ)", ["sk", "sp", "s"], probability: 0.4, position: MatchPosition.Nothing);
+        _st.AddRule("the", "da", probability: 0.4, position: MatchPosition.Anywhere);
+        _st.AddRule("with", "wif", probability: 0.4, position: MatchPosition.Anywhere);
         _st.AddRule(@"\bwh", ["w", "wuh"], probability: 0.5, position: MatchPosition.Nothing);
 
-        // words
-        _st.AddRule(@"[ts]ion\b", ["sh'n", "shun", "shnn"], probability: 0.65, position: MatchPosition.Nothing);
-        _st.AddRule(@"ly\b", ["leh", "li", "l'"], probability: 0.4, position: MatchPosition.Nothing);
-        _st.AddRule(@"er\b", ["uh", "a", "err"], probability: 0.4, position: MatchPosition.Nothing);
-        _st.AddRule(@"le\b", ["l", "ul", "el"], probability: 0.35, position: MatchPosition.Nothing);
-        _st.AddRule(@"ck\b", ["k", "'"], probability: 0.5, position: MatchPosition.Nothing);
-        _st.AddRule("ing", ["in'", "in"], probability: 0.7, position: MatchPosition.Suffix);
+        _st.AddRule(@"[ts]ion\b", ["sh'n", "shun"], probability: 0.65, position: MatchPosition.Nothing);
+        _st.AddRule(@"ly\b", ["leh", "l'"], probability: 0.4, position: MatchPosition.Nothing);
+        _st.AddRule(@"er\b", ["uh", "ur"], probability: 0.4, position: MatchPosition.Nothing);
+        _st.AddRule(@"ck\b", ["g", "'"], probability: 0.3, position: MatchPosition.Nothing);
+        _st.AddRule("ing", ["in'", "in"], probability: 0.8, position: MatchPosition.Suffix);
         _st.AddRule("ght", ["gh'", "t"], probability: 0.45, position: MatchPosition.Suffix);
-        _st.AddRule("mb", ["m", "m'"], probability: 0.5, position: MatchPosition.Suffix);
 
-        _st.AddRule(@"\bhe\b", "'e", probability: 0.7, position: MatchPosition.Nowhere);
-        _st.AddRule(@"\bhim\b", "'im", probability: 0.7, position: MatchPosition.Nowhere);
-        _st.AddRule(@"\bher\b", "'er", probability: 0.7, position: MatchPosition.Nowhere);
-
-        _st.AddRule("can", ["c'n", "cn", "kn"], probability: 0.6, position: MatchPosition.Nowhere);
-        _st.AddRule("and", ["an'", "n", "'n", "nd"], probability: 0.7, position: MatchPosition.Nowhere);
-        _st.AddRule("the", ["th'", "da", "d'", "thuh"], probability: 0.55, position: MatchPosition.Nowhere);
+        // word slurring
+        _st.AddRule(@"\bhe\b", "'e", probability: 0.6, position: MatchPosition.Nowhere);
+        _st.AddRule(@"\bhim\b", "'im", probability: 0.6, position: MatchPosition.Nowhere);
+        _st.AddRule(@"\bher\b", "'er", probability: 0.6, position: MatchPosition.Nowhere);
+        _st.AddRule("can", ["c'n", "cn"], probability: 0.6, position: MatchPosition.Nowhere);
+        _st.AddRule("and", ["an'", "n", "'n"], probability: 0.7, position: MatchPosition.Nowhere);
+        _st.AddRule("the", ["th'", "d'", "thuh"], probability: 0.55, position: MatchPosition.Nowhere);w
         _st.AddRule("to", ["t'", "tuh", "ta"], probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule("for", ["fr", "fer", "f'r"], probability: 0.5, position: MatchPosition.Nowhere);
+        _st.AddRule("for", ["fr", "fer"], probability: 0.5, position: MatchPosition.Nowhere);
         _st.AddRule("of", ["'f", "uh", "uv"], probability: 0.6, position: MatchPosition.Nowhere);
-        _st.AddRule("are", ["r", "'re", "ar", "er"], probability: 0.55, position: MatchPosition.Nowhere);
-        _st.AddRule("is", ["'s", "s", "z"], probability: 0.45, position: MatchPosition.Nowhere);
-        _st.AddRule("what", ["wha'", "wut", "whuh", "wa"], probability: 0.6, position: MatchPosition.Nowhere);
+        _st.AddRule("are", ["r", "er"], probability: 0.55, position: MatchPosition.Nowhere);
+        _st.AddRule("what", ["wha'", "wut", "whuh"], probability: 0.6, position: MatchPosition.Nowhere);
         _st.AddRule("with", ["wif", "wit", "w'"], probability: 0.55, position: MatchPosition.Nowhere);
-        _st.AddRule("just", ["jus'", "jus", "jst"], probability: 0.6, position: MatchPosition.Nowhere);
-        _st.AddRule("that", ["tha'", "dat", "th't"], probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule("this", ["dis", "th's"], probability: 0.45, position: MatchPosition.Nowhere);
+        _st.AddRule("just", ["jus'", "jus"], probability: 0.6, position: MatchPosition.Nowhere);
+        _st.AddRule("that", ["tha'", "dat"], probability: 0.5, position: MatchPosition.Nowhere);
 
-        _st.AddRule(["leave", "let"], ["le'mme", "lea'", "le..."], probability: 0.6, position: MatchPosition.Nowhere);
-        _st.AddRule("alone", ["'lone", "alonnne"], probability: 0.7, position: MatchPosition.Nowhere);
-        _st.AddRule("stop", ["st'p", "stoppit", "stooop"], probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule("minutes", ["mins", "min'sh", "mi'ts"], probability: 0.8, position: MatchPosition.Nowhere);
-        _st.AddRule("light", ["li't", "bright...", "too bright"], probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule("please", ["pleaj", "p'ease", "plz"], probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule(["hello", "hi", "hey"], ["'lo", "h-huh?", "m'h?"], probability: 0.7, position: MatchPosition.Nowhere);
+        _st.AddRule(["hello", "hi", "hey"], ["'lo...", "m'h?", "wha...?"], probability: 0.7, position: MatchPosition.Nowhere);
+        _st.AddRule(["going to", "gonna"], ["gunna", "gon'"], probability: 0.8, position: MatchPosition.Nowhere);
+        _st.AddRule(["want to", "wanna"], ["wann'", "wunna"], probability: 0.8, position: MatchPosition.Nowhere);
+        _st.AddRule(["have to", "gotta"], ["hafta", "haft'"], probability: 0.75, position: MatchPosition.Nowhere);
+        _st.AddRule("don't know", ["dunno", "d'no..."], probability: 0.85, position: MatchPosition.Nowhere);
+        _st.AddRule(["get", "got", "getting"], ["ge'", "go'", "gettin'"], probability: 0.5, position: MatchPosition.Nowhere);
+        _st.AddRule("probably", ["prob'ly", "pro'ly"], probability: 0.8, position: MatchPosition.Nowhere);
+        _st.AddRule("actually", ["actchully", "akshly"], probability: 0.7, position: MatchPosition.Nowhere);
+        _st.AddRule("because", ["cuz", "coz"], probability: 0.75, position: MatchPosition.Nowhere);
+        _st.AddRule("okay", ["'kay", "mkay", "mhm..."], probability: 0.7, position: MatchPosition.Nowhere);
+        _st.AddRule(["what's that", "whats that"], "wazzat...", probability: 0.7, position: MatchPosition.Nowhere);
+        _st.AddRule(["yes", "yeah"], ["yeah...", "mhm", "yuh"], probability: 0.5, position: MatchPosition.Nowhere);
+        _st.AddRule(["no", "nah"], ["nuh...", "nah...", "nnn"], probability: 0.5, position: MatchPosition.Nowhere);
 
-        // slurring
-        _st.AddRule(["going to", "gonna"], ["gunna", "gon'", "g'nna"], probability: 0.8, position: MatchPosition.Nowhere);
-        _st.AddRule(["want to", "wanna"], ["wann'", "wan'", "wana", "wunna"], probability: 0.8, position: MatchPosition.Nowhere);
-        _st.AddRule(["have to", "gotta"], ["gott'", "haft'", "hafta"], probability: 0.75, position: MatchPosition.Nowhere);
-        _st.AddRule(["I am", "I'm"], ["m'", "am", "'m"], probability: 0.6, position: MatchPosition.Nowhere);
-        _st.AddRule("don't know", ["dunno", "dun'", "d'no"], probability: 0.85, position: MatchPosition.Nowhere);
-        _st.AddRule(["get", "got", "getting"], ["ge'", "go'", "gettin'", "git", "geh"], probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule(["about", "around"], ["'bout", "'round", "bout", "round"], probability: 0.6, position: MatchPosition.Nowhere);
-        _st.AddRule("probably", ["prob'ly", "probly", "prolly"], probability: 0.8, position: MatchPosition.Nowhere);
-        _st.AddRule("actually", ["akshully", "actchully", "ackshly"], probability: 0.7, position: MatchPosition.Nowhere);
-        _st.AddRule("really", ["rly", "realleh", "r'lly"], probability: 0.65, position: MatchPosition.Nowhere);
-        _st.AddRule("whatever", ["whatevr", "whatevs", "wh'tever"], probability: 0.7, position: MatchPosition.Nowhere);
-        _st.AddRule("because", ["cuz", "c'z", "coz", "cus"], probability: 0.75, position: MatchPosition.Nowhere);
-        _st.AddRule("okay", ["'kay", "k", "mmkay", "okeh"], probability: 0.7, position: MatchPosition.Nowhere);
-        _st.AddRule(["what's that", "whats that"], "wazzat", probability: 0.7, position: MatchPosition.Nowhere);
-        _st.AddRule(["yes", "yeah"], ["yeh", "yaa", "yhh", "mmhm"], probability: 0.5, position: MatchPosition.Nowhere);
-        _st.AddRule(["no", "nah"], ["nuh", "nah", "mm-mm", "neh"], probability: 0.5, position: MatchPosition.Nowhere);
-
-        _st.AddRule(@"!", ["...", "..?", ".."], position: MatchPosition.Suffix);
-        _st.AddRule(@"?", ["...?", "..?"], probability: 0.5, position: MatchPosition.Suffix);
-        _st.AddRule(@"([aeiou])", "$1$1$1...", probability: 0.15, position: MatchPosition.Suffix);
+        _st.AddRule(@"\.", ["...", ".."], probability: 0.4, position: MatchPosition.Suffix);
+        _st.AddRule(@"\?", ["...?", "..?"], probability: 0.5, position: MatchPosition.Suffix);
+        _st.AddRule(@"([aeiou])", "$1$1$1...", probability: 0.1, position: MatchPosition.Suffix);
 
         _st.AddRule(" ", new[]
             {
-                " ...mmgh... ", " ...mrrph... ", " ...hnnnngh... ",
-                " ...rgggh... ", " ...nnn-nn... ", " ...mm-hmm... ", " ...mrrnn... ",
-                " ...*huffs*... ", " ...*grumbles*... ", " ...*exhales*... ", " ...*sighs*... ",
-                " ...*groans*... ", " ...*yawns*... ", " ...ughhh... ", " ...rgh... ",
-                " ...mnhn... ", " ...uhhh-mm... ", " ...nnnhhh... ", " ...m-mm... ",
-                " ...wh-.. ", " ...nnh... ", " ...mmf... "
+                " ...mmgh... ", " ...mnh... ", " ...hnnn... ",
+                " ...rgh... ", " ...nuh... ", " ...mhm... ", " ...mrrnn... ",
+                " ...hwaaah... ", " ...ugh... ", " ...uhhh... ", " ...zzz... ",
+                " ...m-mm... ", " ...wha... ", " ...nnh... "
             },
-            probability: 0.1, position: MatchPosition.Anywhere, applyOnce: true
+            probability: 0.08, position: MatchPosition.Anywhere, applyOnce: true
         );
 
         SubscribeLocalEvent<SleepyMumbleComponent, AccentGetEvent>(OnAccent);
     }
 
-    private static readonly Regex ExclamationRegex = new(@"!{2,}", RegexOptions.Compiled);
+    private static readonly Regex ExclamationRegex = new(@"!+", RegexOptions.Compiled);
     private static readonly Regex QuestionRegex = new(@"\?{2,}", RegexOptions.Compiled);
     private void OnAccent(EntityUid uid, SleepyMumbleComponent component, AccentGetEvent args)
     {
-        // because sleepy people dont shout we just make it so they CAN'T..
         var original = args.Message;
 
         var message = string.IsNullOrEmpty(original)
             ? original
             : char.ToUpperInvariant(original[0]) + original.Substring(1).ToLowerInvariant();
-        message = ExclamationRegex.Replace(message, "!");
-        message = QuestionRegex.Replace(message, "?");
+        message = ExclamationRegex.Replace(message, "...");
+        message = QuestionRegex.Replace(message, "...?");
+
         args.Message = _st.Process(message);
     }
 }
